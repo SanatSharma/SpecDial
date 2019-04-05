@@ -5,8 +5,8 @@ from torch.nn.functional import normalize
 from torch.nn.utils.rnn import pad_sequence
 from torch.utils.data import Dataset
 
-from visdialch.data.readers import DialogsReader, DenseAnnotationsReader, ImageFeaturesHdfReader
-from visdialch.data.vocabulary import Vocabulary
+from data.readers import DialogsReader, DenseAnnotationsReader, ImageFeaturesHdfReader
+from data.vocabulary import Vocabulary
 
 
 class VisDialDataset(Dataset):
