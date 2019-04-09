@@ -90,6 +90,9 @@ class DialogsReader(object):
 
         # Replace question and answer indices with actual word tokens.
         for i in range(len(dialog_for_image)):
+ #           print(self.questions)
+ #           print(self.answers)
+            print(dialog_for_image[i]["question"])
             dialog_for_image[i]["question"] = self.questions[dialog_for_image[i]["question"]]
             dialog_for_image[i]["answer"] = self.answers[dialog_for_image[i]["answer"]]
             for j, answer_option in enumerate(dialog_for_image[i]["answer_options"]):
