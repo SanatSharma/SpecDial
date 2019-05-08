@@ -1,0 +1,11 @@
+ID    | QUESTION | OURS | BASELINE
+127947|are there any utensils|no|no the peels are intact
+127947|does this look like it's indoors|yes it does|i can't tell it's too close up
+233663|does she seem to be in a hurry|no|she looks like she is having a lot of fun
+532136|are the cooked|yes|no, they're raw
+258922|can you see how many there are all together|maybe 5|looks like editing pictures
+100334|are they wearing jackets|no|everyone is wearing a coat
+153403|is he under the umbrella|yeah,|no, he’s holding it up and in front of him
+519161|is the photo being taken with a phone or actual camera|actual camera|looks like a phone
+238379|how many people is in the picture|1|0
+62364|is it daytime or nighttime|night time|daytime

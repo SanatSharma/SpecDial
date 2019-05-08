@@ -72,12 +72,10 @@ class VisDialDataset(Dataset):
         dialog = visdial_instance["dialog"]
 
         # Convert word tokens of caption, question, answer and answer options to integers.
-        caption = self.vocabulary.to_indices(caption)      
-
-        questions, question_lengths = self._pad_sequences(
-            [dialog_round["question"] for dialog_round in dialog]
-        )
-        history, history_lengths = self._get_history(
+        #caption = caption      
+        questions=  [dialog_round["question"] for dialog_round in dialog]
+        
+        history=self._get_history(
             caption,
             [dialog_round["question"] for dialog_round in dialog],
             [dialog_round["answer"] for dialog_round in dialog]
@@ -86,10 +84,10 @@ class VisDialDataset(Dataset):
         answer_options = []
         answer_option_lengths = []
         for dialog_round in dialog:
-            options, option_lengths = self._pad_sequences(dialog_round["answer_options"])
+            options= dialog_round["answer_options"]
             answer_options.append(options)
-            answer_option_lengths.append(option_lengths)
-        answer_options = torch.stack(answer_options, 0)
+       #     answer_option_lengths.append(option_lengths)
+#        answer_options = torch.stack(answer_options, 0)
 
         if "test" not in self.split:
             answer_indices = [dialog_round["gt_index"] for dialog_round in dialog]
@@ -99,12 +97,10 @@ class VisDialDataset(Dataset):
         item = {}
         item["img_ids"] = torch.tensor(image_id).long()
         item["img_feat"] = image_features
-        item["ques"] = questions.long()
-        item["hist"] = history.long()
-        item["opt"] = answer_options.long()
-        item["ques_len"] = torch.tensor(question_lengths).long()
-        item["hist_len"] = torch.tensor(history_lengths).long()
-        item["opt_len"] = torch.tensor(answer_option_lengths).long()
+        item["ques"] = questions
+        item["hist"] = history
+        item["opt"] = answer_options
+        #item["opt_len"] = torch.tensor(answer_option_lengths).long()
         item["num_rounds"] = torch.tensor(visdial_instance["num_rounds"]).long()
         if "test" not in self.split:
             item["ans_ind"] = torch.tensor(answer_indices).long()
@@ -145,7 +141,7 @@ class VisDialDataset(Dataset):
             fill_value=self.vocabulary.PAD_INDEX,
         )
         padded_sequences = pad_sequence(
-            [torch.tensor(sequence) for sequence in sequences],
+            [sequence for sequence in sequences],
             batch_first=True, padding_value=self.vocabulary.PAD_INDEX
         )
         maxpadded_sequences[:, :padded_sequences.size(1)] = padded_sequences
@@ -191,9 +187,6 @@ class VisDialDataset(Dataset):
             (len(history), max_history_length),
             fill_value=self.vocabulary.PAD_INDEX,
         )
-        padded_history = pad_sequence(
-            [torch.tensor(round_history) for round_history in history],
-            batch_first=True, padding_value=self.vocabulary.PAD_INDEX
-        )
-        maxpadded_history[:, :padded_history.size(1)] = padded_history
-        return maxpadded_history, history_lengths
+        padded_history =    [round_history for round_history in history]
+       # maxpadded_history[:, :padded_history.size(1)] = padded_history
+        return padded_history
