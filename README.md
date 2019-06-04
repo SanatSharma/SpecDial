@@ -3,7 +3,7 @@
 Human beings judge and decipher specificity of response when answering questions and conducting dialogue. In this work, we aim to inculcate specificity prediction for VQA agents. 
 We propose a model that adds a specificity predictor network/module to a baseline Question Answering model in order to account for specificity of responses. The specificity network generates a score for each candidate response and we perform a weighted average with the scores of the Question Answering base model to predict the most suitable response to a question. We experimented on answering questions in the DailyDialogue dataset and the Visual Dialog dataset, and showed that using the predicted specificity provides a small but significant improvement in both pure text and visual grounded settings.
 
-The paper that outlines the network architecture and results can be found here: 
+The paper that outlines the network architecture and results can be found here: https://github.com/SanatSharma/SpecDial/blob/master/Specdial.pdf
 
 Visual Dialog Challenge Starter Code
 ====================================
